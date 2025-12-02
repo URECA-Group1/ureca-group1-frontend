@@ -12,3 +12,23 @@ export async function getSeats(): Promise<GetSeatsResponse> {
   const response = await api.get<GetSeatsResponse>("/api/seats");
   return response.data;
 }
+
+// 좌석 예약
+export async function reserveSeat(seatId: string) {
+  await api.post(`/api/seats/${seatId}/reservation`);
+}
+
+// 예약 취소
+export async function cancelSeat(seatId: string) {
+  await api.post(`/api/seats/${seatId}/cancel`);
+}
+
+// 좌석 입실
+export async function entrySeat(seatId: string) {
+  await api.post(`/api/seats/${seatId}/entry`);
+}
+
+// 좌석 퇴실
+export async function exitSeat(seatId: string) {
+  await api.post(`/api/seats/${seatId}/exit`);
+}

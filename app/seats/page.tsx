@@ -15,12 +15,14 @@ import { Seat as SeatType } from "@/src/types/seat";
 export default function SeatsPage() {
   const [seats, setSeats] = useState<SeatType[]>([]);
 
+  const loadSeats = async () => {
+    const data = await getSeats();
+    setSeats(data.data);
+  };
+
   useEffect(() => {
-    const load = async () => {
-      const data = await getSeats();
-      setSeats(data.data);
-    };
-    load();
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    loadSeats();
   }, []);
 
   return (
@@ -34,6 +36,7 @@ export default function SeatsPage() {
             id={seat.id}
             seatNumber={seat.seatNumber}
             seatStatus={seat.seatStatus}
+            onChanged={loadSeats}
           />
         ))}
       </div>
