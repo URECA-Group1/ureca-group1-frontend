@@ -1,6 +1,6 @@
 // app/page.tsx
 import Image from "next/image";
-import HeaderComponent from "../components/HeaderComponent"; // 경로 확인
+import HeaderComponent from "../src/components/HeaderComponent"; // 경로 확인
 
 export default function Home() {
   return (
@@ -10,7 +10,6 @@ export default function Home() {
 
       {/* 메인 컨텐츠 */}
       <main className="flex flex-col items-center justify-center flex-1 py-32 px-16 bg-white dark:bg-black">
-        
         <div className="flex flex-col items-center gap-6 text-center">
           <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
             스터디 카페 통합 예약 시스템

@@ -1,26 +1,40 @@
-import Seat from "@/components/Seat";
+"use client";
+import { useEffect, useState } from "react";
 
-const SEATS = [
-  { id: "1", seatNumber: "A001" },
-  { id: "2", seatNumber: "A002" },
-  { id: "3", seatNumber: "A003" },
-  { id: "4", seatNumber: "A004" },
-  { id: "5", seatNumber: "A005" },
-  { id: "6", seatNumber: "A006" },
-  { id: "7", seatNumber: "A007" },
-  { id: "8", seatNumber: "A008" },
-  { id: "9", seatNumber: "A009" },
-  { id: "10", seatNumber: "A010" },
-];
+import Seat from "@/src/components/Seat";
+import { getSeats } from "@/src/api/seat";
+import { Seat as SeatType } from "@/src/types/seat";
+
+/**
+ * @file app/seats/page.tsx
+ * @author 윤재민
+ * @since 2025-12-02
+ * @description 좌석 화면을 보여주는 페이지입니다.
+ */
 
 export default function SeatsPage() {
+  const [seats, setSeats] = useState<SeatType[]>([]);
+
+  useEffect(() => {
+    const load = async () => {
+      const data = await getSeats();
+      setSeats(data.data);
+    };
+    load();
+  }, []);
+
   return (
     <div className="mt-10 mx-10">
       <h2 className="text-2xl">좌석 예약/입실/퇴실</h2>
       <hr className="mb-5" />
       <div className="flex overflow-y-auto flex-wrap">
-        {SEATS.map((seat) => (
-          <Seat key={seat.id} seatId={seat.id} seatNumber={seat.seatNumber} />
+        {seats?.map((seat) => (
+          <Seat
+            key={seat.id}
+            id={seat.id}
+            seatNumber={seat.seatNumber}
+            seatStatus={seat.seatStatus}
+          />
         ))}
       </div>
     </div>
