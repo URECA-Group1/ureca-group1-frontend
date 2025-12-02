@@ -4,6 +4,12 @@ import { useState } from "react";
 import Modal from "./Modal";
 import { SeatStatus, Seat as SeatType } from "@/src/types/seat";
 
+/**
+ * @file src/components/Seat.tsx
+ * @author 윤재민
+ * @since 2025-12-02
+ * @description 좌석 페이지의 각 좌석 칸을 보여주는 화면입니다.
+ */
 export default function Seat(seat: SeatType) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 

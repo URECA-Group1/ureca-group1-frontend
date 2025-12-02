@@ -5,6 +5,13 @@ import Seat from "@/src/components/Seat";
 import { getSeats } from "@/src/api/seat";
 import { Seat as SeatType } from "@/src/types/seat";
 
+/**
+ * @file app/seats/page.tsx
+ * @author 윤재민
+ * @since 2025-12-02
+ * @description 좌석 화면을 보여주는 페이지입니다.
+ */
+
 export default function SeatsPage() {
   const [seats, setSeats] = useState<SeatType[]>([]);
 
