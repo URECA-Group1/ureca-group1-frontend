@@ -6,7 +6,7 @@
  */
 export interface Snack {
   id: number;
-  name: string;
-  price: number;
-  quantity: number;
+  snackName: string;
+  snackPrice: number;
+  snackQuantity: number;
 }

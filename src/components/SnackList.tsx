@@ -45,10 +45,10 @@ export default function SnackList() {
           }}
         >
           <h2 style={{ fontSize: "18px", marginBottom: "6px" }}>
-            {snack.name}
+            {snack.snackName}
           </h2>
-          <p>가격: {snack.price}원</p>
-          <p>재고: {snack.quantity} 개</p>
+          <p>가격: {snack.snackPrice}원</p>
+          <p>재고: {snack.snackQuantity}개</p>
         </div>
       ))}
     </div>
