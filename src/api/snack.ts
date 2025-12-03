@@ -1,3 +1,4 @@
+import { api } from "./api";
 import { Snack } from "../types/snack";
 
 /**
@@ -8,12 +9,6 @@ import { Snack } from "../types/snack";
  */
 
 export async function fetchSnackList(): Promise<Snack[]> {
-  const res = await fetch("/api/snacks/list", { method: "GET" });
-
-  if (!res.ok) {
-    throw new Error("간식 목록 조회 실패");
-  }
-
-  const result = await res.json();
-  return result.data; // API 응답의 data 배열만 반환
+  const response = await api.get<{ data: Snack[] }>("/api/snacks/list");
+  return response.data.data; // API 응답의 data 배열만 반환
 }
