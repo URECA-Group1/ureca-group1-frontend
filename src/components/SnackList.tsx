@@ -27,7 +27,6 @@ export default function SnackList() {
         setLoading(false);
       }
     };
-
     load();
   }, []);
 
@@ -49,7 +48,7 @@ export default function SnackList() {
             {snack.name}
           </h2>
           <p>가격: {snack.price}원</p>
-          <p>재고: {snack.quantity}개</p>
+          <p>재고: {snack.quantity} 개</p>
         </div>
       ))}
     </div>
