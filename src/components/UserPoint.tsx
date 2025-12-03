@@ -43,7 +43,7 @@ export default function PointBalance() {
       }}
     >
       💰 내 잔여 포인트:{" "}
-      {points !== null ? points.toLocaleString() : "불러오는 중..."} P
+      {points !== null ? `${points.toLocaleString()} P` : "불러오는 중..."}
     </div>
   );
 }
