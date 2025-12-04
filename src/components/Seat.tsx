@@ -39,8 +39,8 @@ export default function Seat(seat: SeatProps) {
       setIsOpen(false);
       // 좌석 조회
       seat.onChanged?.();
-    } catch (e) {
-      alert(e);
+    } catch (e: any) {
+      alert(e.response?.data?.message);
     }
   };
 
@@ -50,8 +50,8 @@ export default function Seat(seat: SeatProps) {
       // modal 닫고 좌석 조회
       setIsOpen(false);
       seat.onChanged?.();
-    } catch (e) {
-      alert(e);
+    } catch (e: any) {
+      alert(e.response?.data?.message);
     }
   };
 
@@ -61,8 +61,8 @@ export default function Seat(seat: SeatProps) {
       // modal 닫고 좌석 조회
       setIsOpen(false);
       seat.onChanged?.();
-    } catch (e) {
-      alert(e);
+    } catch (e: any) {
+      alert(e.response?.data?.message);
     }
   };
 
@@ -72,8 +72,8 @@ export default function Seat(seat: SeatProps) {
       // modal 닫고 좌석 조회
       setIsOpen(false);
       seat.onChanged?.();
-    } catch (e) {
-      alert(e);
+    } catch (e: any) {
+      alert(e.response?.data?.message);
     }
   };
 
