@@ -16,8 +16,12 @@ export default function SeatsPage() {
   const [seats, setSeats] = useState<SeatType[]>([]);
 
   const loadSeats = async () => {
-    const data = await getSeats();
-    setSeats(data.data);
+    try {
+      const data = await getSeats();
+      setSeats(data.data);
+    } catch (e: any) {
+      alert(e.response?.data?.message);
+    }
   };
 
   useEffect(() => {
