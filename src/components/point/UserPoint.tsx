@@ -1,5 +1,5 @@
 /**
- * @file src/components/UserPoint.tsx
+ * @file src/components/point/UserPoint.tsx
  * @author 허영현
  * @since 2025-12-03
  * @description 유저의 잔여 포인트 표시 + 충전 페이지로 이동하는 컴포넌트 파일입니다.
@@ -8,7 +8,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { fetchMyPoints } from "../api/point";
+import { fetchMyPoints } from "../../api/point";
 
 export default function PointBalance() {
   const [points, setPoints] = useState<number | null>(null);
