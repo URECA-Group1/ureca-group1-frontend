@@ -9,6 +9,7 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tosspayments/tosspayments-sdk": "^2.5.0",
     "axios": "^1.13.2",
     "js-cookie": "^3.0.5",
     "next": "16.0.4",
