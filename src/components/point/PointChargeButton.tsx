@@ -17,7 +17,7 @@ export default function PointChargeButton({ amount }: { amount: number | "" }) {
     }
 
     // 결제 위젯 페이지로 이동하며 금액 전달
-    router.push(`/point/checkout?amount=${amount}`);
+    router.push(`/points/checkout?amount=${amount}`);
   };
 
   return (
