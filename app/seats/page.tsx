@@ -1,9 +1,6 @@
-"use client";
-import { useEffect, useState } from "react";
-
-import Seat from "@/src/components/Seat";
-import { getSeats } from "@/src/api/seat";
-import { Seat as SeatType } from "@/src/types/seat";
+import SeatingChartHeader from "@/src/components/seats/SeatingChartHeader";
+import SeatHeader from "@/src/components/seats/SeatHeader";
+import SeatingChart from "@/src/components/seats/SeatingChart";
 
 /**
  * @file app/seats/page.tsx
@@ -13,36 +10,12 @@ import { Seat as SeatType } from "@/src/types/seat";
  */
 
 export default function SeatsPage() {
-  const [seats, setSeats] = useState<SeatType[]>([]);
-
-  const loadSeats = async () => {
-    try {
-      const data = await getSeats();
-      setSeats(data.data);
-    } catch (e: any) {
-      alert(e.response?.data?.message);
-    }
-  };
-
-  useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    loadSeats();
-  }, []);
-
   return (
     <div className="mt-10 mx-10">
-      <h2 className="text-2xl">좌석 예약/입실/퇴실</h2>
-      <hr className="mb-5" />
-      <div className="flex overflow-y-auto flex-wrap">
-        {seats?.map((seat) => (
-          <Seat
-            key={seat.id}
-            id={seat.id}
-            seatNumber={seat.seatNumber}
-            seatStatus={seat.seatStatus}
-            onChanged={loadSeats}
-          />
-        ))}
+      <SeatHeader />
+      <div className="py-6 px-4 shadow-xl rounded-xl w-[600px]">
+        <SeatingChartHeader />
+        <SeatingChart />
       </div>
     </div>
   );
