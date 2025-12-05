@@ -1,16 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import Modal from "./Modal";
+
+import Modal from "@/src/components/Modal";
 import { SeatStatus, Seat as SeatType } from "@/src/types/seat";
-import { cancelSeat, entrySeat, exitSeat, reserveSeat } from "../api/seat";
+import { cancelSeat, entrySeat, exitSeat, reserveSeat } from "@/src/api/seat";
 
 type SeatProps = SeatType & {
   onChanged?: () => void;
 };
 
 /**
- * @file src/components/Seat.tsx
+ * @file src/components/seats/Seat.tsx
  * @author 윤재민
  * @since 2025-12-02
  * @description 좌석 페이지의 각 좌석 칸을 보여주는 화면입니다.
@@ -24,7 +25,7 @@ export default function Seat(seat: SeatProps) {
   const getSeatColor = (status: SeatStatus) => {
     switch (status) {
       case SeatStatus.USED:
-        return "bg-red-500 text-white";
+        return "bg-red-400 text-white";
       case SeatStatus.RESERVED:
         return "bg-yellow-400 text-white";
       case SeatStatus.EMPTY:
@@ -82,13 +83,13 @@ export default function Seat(seat: SeatProps) {
       <div
         key={seat.id}
         className={`
-          flex flex-col hover:bg-zinc-500 cursor-pointer px-4 py-6 m-1 rounded-2xl border
+          flex flex-col hover:bg-zinc-500 cursor-pointer px-4 py-6 m-1 rounded-2xl border items-center
           ${getSeatColor(seat.seatStatus)}
           `}
         onClick={() => setIsOpen(true)}
       >
-        <div className="w-10 text-center">{seat.id}</div>
-        <div className="w-10 text-center">{seat.seatNumber}</div>
+        <div className="text-center">{seat.id}</div>
+        <div className="text-center">{seat.seatNumber}</div>
       </div>
       <Modal
         isOpen={isOpen}
