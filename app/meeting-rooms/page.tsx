@@ -8,7 +8,7 @@ import { FaArrowLeft } from "react-icons/fa";
 import MeetingRoom from "@/src/components/MeetingRoom";
 
 /**
- * @file src/types/seat.ts
+ * @file app/meeting-rooms/page.tsx
  * @author 윤재민
  * @since 2025-12-05
  * @description 회의실 페이지를 보여주는 화면입니다.
