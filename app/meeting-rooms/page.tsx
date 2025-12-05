@@ -10,7 +10,7 @@ import MeetingRoom from "@/src/components/MeetingRoom";
 /**
  * @file src/types/seat.ts
  * @author 윤재민
- * @since 2025-12-02
+ * @since 2025-12-05
  * @description 회의실 페이지를 보여주는 화면입니다.
  */
 export default function MeetingRoomsPage() {
