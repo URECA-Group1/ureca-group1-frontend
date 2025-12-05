@@ -87,7 +87,6 @@ export default function PointCheckoutPage() {
 
   return (
     <div style={{ padding: "20px" }}>
-      {/* ▶▶ 여기가 예쁘게 꾸며진 영역 */}
       <div
         style={{
           background: "#fff",
