@@ -5,7 +5,7 @@
  * @description 간식 목록 화면을 보여주는 페이지입니다.
  */
 
-import UserPoint from "@/src/components/UserPoint";
+import UserPoint from "@/src/components/point/UserPoint";
 import SnackList from "@/src/components/SnackList";
 
 export default function SnacksPage() {
