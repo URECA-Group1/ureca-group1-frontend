@@ -80,8 +80,8 @@ export default function PointCheckoutPage() {
     await widgets.requestPayment({
       orderId: `charge_${new Date().getTime()}`,
       orderName: `포인트 ${Number(chargeAmount).toLocaleString()}원 충전`,
-      successUrl: `${window.location.origin}/point/success`,
-      failUrl: `${window.location.origin}/point/fail`,
+      successUrl: `${window.location.origin}/points/success`,
+      failUrl: `${window.location.origin}/points/fail`,
     });
   };
 
