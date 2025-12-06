@@ -23,7 +23,7 @@ export default function SuccessPage() {
 
     async function approve() {
       try {
-        await axios.post("/api/payments/approve", {
+        await axios.post("/api/v1/payment", {
           paymentKey,
           orderId,
           amount: Number(amount),
