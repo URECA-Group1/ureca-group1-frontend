@@ -7,9 +7,9 @@
 
 "use client";
 
+import { api } from "../../../src/api/api";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import axios from "axios";
 
 export default function SuccessPage() {
   const params = useSearchParams();
@@ -23,7 +23,7 @@ export default function SuccessPage() {
 
     async function approve() {
       try {
-        await axios.post("/api/v1/payment", {
+        await api.post("/api/v1/payment", {
           paymentKey,
           orderId,
           amount: Number(amount),
