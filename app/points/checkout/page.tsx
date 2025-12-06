@@ -77,12 +77,24 @@ export default function PointCheckoutPage() {
   const requestPayment = async () => {
     if (!widgets) return;
 
-    await widgets.requestPayment({
-      orderId: `charge_${new Date().getTime()}`,
-      orderName: `포인트 ${Number(chargeAmount).toLocaleString()}원 충전`,
-      successUrl: `${window.location.origin}/points/success`,
-      failUrl: `${window.location.origin}/points/fail`,
-    });
+    try {
+      await widgets.requestPayment({
+        orderId: `charge_${new Date().getTime()}`,
+        orderName: `포인트 ${Number(chargeAmount).toLocaleString()}원 충전`,
+        successUrl: `${window.location.origin}/points/success`,
+        failUrl: `${window.location.origin}/points/fail`,
+      });
+    } catch (error: any) {
+      // 토스가 던지는 약관 미동의 에러 처리
+      if (error.message?.includes("필수 약관")) {
+        alert("필수 약관에 동의해주세요.");
+        return;
+      }
+
+      // 그 외 예외 처리
+      console.error("결제 요청 중 오류:", error);
+      alert("결제 요청 중 오류가 발생했습니다.");
+    }
   };
 
   return (
