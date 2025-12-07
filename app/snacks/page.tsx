@@ -6,7 +6,7 @@
  */
 
 import UserPoint from "@/src/components/point/UserPoint";
-import SnackList from "@/src/components/SnackList";
+import SnackList from "@/src/components/snack/SnackList";
 
 export default function SnacksPage() {
   return (
