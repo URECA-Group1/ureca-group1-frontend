@@ -41,5 +41,52 @@ export default function SuccessPage() {
     approve();
   }, [paymentKey, orderId, amount]);
 
-  return <p>결제 승인 처리 중...</p>;
+  return (
+    <div style={styles.container}>
+      <div style={styles.loader}></div>
+      <p style={styles.text}>결제 승인 처리 중입니다...</p>
+    </div>
+  );
+}
+
+const styles: { [key: string]: React.CSSProperties } = {
+  container: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "20px",
+    animation: "fadeIn 0.6s ease-in-out",
+  },
+  loader: {
+    width: "48px",
+    height: "48px",
+    border: "5px solid #ddd",
+    borderTop: "5px solid #4F46E5",
+    borderRadius: "50%",
+    animation: "spin 1s linear infinite",
+  },
+  text: {
+    fontSize: "18px",
+    color: "#555",
+    fontWeight: 500,
+  },
+};
+
+// 글로벌 애니메이션 추가
+if (typeof document !== "undefined") {
+  const style = document.createElement("style");
+  style.innerHTML = `
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
 }
