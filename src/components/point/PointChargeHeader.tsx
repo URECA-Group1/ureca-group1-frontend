@@ -5,11 +5,15 @@
  * @description 포인트 충전 페이지의 헤더 컴포넌트 파일입니다.
  */
 
+import { useRouter } from "next/navigation";
+
 export default function PointChargeHeader() {
+  const router = useRouter();
+
   return (
     <div style={{ marginBottom: "20px" }}>
       <button
-        onClick={() => history.back()}
+        onClick={() => router.push("/snacks")}
         style={{
           background: "none",
           border: "none",
