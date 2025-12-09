@@ -6,6 +6,7 @@ import { getAvailableMeetingRooms } from "@/src/api/meeting-rooms";
 import { MeetingRoom as MeetingRoomType } from "@/src/types/meeting-room";
 import { FaArrowLeft } from "react-icons/fa";
 import MeetingRoom from "@/src/components/meeting-rooms/MeetingRoom";
+import MyMeetingRooms from "@/src/components/meeting-rooms/MyMeetingRooms";
 
 /**
  * @file app/meeting-rooms/page.tsx
@@ -41,12 +42,15 @@ export default function MeetingRoomsPage() {
           <span className="ml-2">돌아가기</span>
         </Link>
         <h2 className="mt-5 text-3xl font-bold">회의실 예약</h2>
-        <p className="mt-2 text-zinc-700 text-lg">
-          원하는 회의실을 선택하세요.
-        </p>
+        <div className="flex justify-between">
+          <p className="mt-2 text-zinc-700 text-lg">
+            원하는 회의실을 선택하세요.
+          </p>
+          <MyMeetingRooms updateMeetingRoomsList={loadMeetingRooms} />
+        </div>
       </div>
       <div className="mt-5 flex flex-wrap gap-4">
-        {meetingRooms.map((room) => {
+        {meetingRooms?.map((room) => {
           return (
             <MeetingRoom
               key={room.id}

@@ -9,3 +9,16 @@ export interface MeetingRoom {
   id: string;
   available: boolean;
 }
+
+export enum MeetingRoomStatus {
+  PENDING = "PENDING",
+  ACTIVE = "ACTIVE",
+  CANCELLED = "CANCELLED",
+}
+
+export interface MyMeetingRoom {
+  id: string;
+  meetingRoomId: string;
+  phoneNumber: string;
+  status: MeetingRoomStatus;
+}
