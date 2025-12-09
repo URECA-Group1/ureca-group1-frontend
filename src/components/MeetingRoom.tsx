@@ -1,6 +1,9 @@
 import { useState } from "react";
 import Modal from "./Modal";
-import { enterMeetingRoomReservationPage } from "../api/meeting-rooms";
+import {
+  cancelReservation,
+  enterMeetingRoomReservationPage,
+} from "@/src/api/meeting-rooms";
 
 /**
  * @file src/components/MeetingRoom.tsx
@@ -30,10 +33,14 @@ export default function MeetingRoom({
     }
   };
 
-  const leaveReservationPage = () => {
+  const leaveReservationPage = async () => {
     setIsOpen(false);
-    // todo: cancelReservation
-    updateMeetingRoomsList();
+    try {
+      await cancelReservation(reservationId);
+      updateMeetingRoomsList();
+    } catch (e: any) {
+      alert(e.response?.data?.message);
+    }
   };
 
   return (
