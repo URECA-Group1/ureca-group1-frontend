@@ -23,7 +23,16 @@ export default function PointHistoryItem({ order }: { order: PaidOrder }) {
         <div className={styles.date}>{formatted}</div>
       </div>
 
-      <div className={styles.price}>-{order.totalPrice.toLocaleString()} P</div>
+      <div className={styles.right}>
+        <div className={styles.price}>
+          -{order.totalPrice.toLocaleString()} P
+        </div>
+
+        {/* 🔥 잔액 표시 */}
+        <div className={styles.balance}>
+          잔액: {order.remainingPoints.toLocaleString()} P
+        </div>
+      </div>
     </div>
   );
 }

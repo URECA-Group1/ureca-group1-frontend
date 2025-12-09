@@ -18,4 +18,5 @@ export interface PaidOrder {
   totalPrice: number;
   orderStatus: string;
   orderTime: string; // ISO 날짜 문자열
+  remainingPoints?: number;
 }

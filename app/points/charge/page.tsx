@@ -9,6 +9,7 @@
 
 import { useState, useEffect } from "react";
 import { fetchMyPoints, fetchPaidOrders } from "@/src/api/point";
+import { PaidOrder } from "@/src/types/point";
 
 import PointChargeHeader from "@/src/components/point/PointChargeHeader";
 import PointBalanceCard from "@/src/components/point/PointBalanceCard";
@@ -20,7 +21,7 @@ import PointHistoryList from "@/src/components/point/PointHistoryList";
 export default function ChargePage() {
   const [points, setPoints] = useState<number>(0);
   const [amount, setAmount] = useState<number | "">("");
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState<PaidOrder[]>([]);
   const [page, setPage] = useState(1);
 
   const pageSize = 5; // 페이지당 5개
@@ -38,7 +39,22 @@ export default function ChargePage() {
           new Date(b.orderTime).getTime() - new Date(a.orderTime).getTime()
       );
 
-      setOrders(sorted);
+      // 잔액 계산 로직
+      let balance = p;
+
+      const withBalance = sorted.map((order) => {
+        const updated = {
+          ...order,
+          remainingPoints: balance,
+        };
+
+        // 다음 계산 위해 되돌리기
+        balance += order.totalPrice;
+
+        return updated;
+      });
+
+      setOrders(withBalance);
     })();
   }, []);
 
