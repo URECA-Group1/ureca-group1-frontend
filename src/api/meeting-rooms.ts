@@ -1,4 +1,4 @@
-import { MeetingRoom } from "../types/meeting-room";
+import { MeetingRoom, MyMeetingRoom } from "@/src/types/meeting-room";
 import { api } from "./api";
 
 /**
@@ -39,4 +39,12 @@ export async function reserveMeetingRoom(
   await api.post(`/api/meeting-rooms/reservations/${reservationId}/complete`, {
     phoneNumber,
   });
+}
+
+// 내 예약 목록
+export async function getMyReservedMeetingRooms(): Promise<MyMeetingRoom[]> {
+  const response = await api.get<{ data: MyMeetingRoom[] }>(
+    `/api/meeting-rooms/reservations`
+  );
+  return response.data.data;
 }
