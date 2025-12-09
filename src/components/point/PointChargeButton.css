@@ -16,7 +16,7 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.35s ease;
+  transition: background 0.25s ease;
 }
 
 .charge-btn:hover {
