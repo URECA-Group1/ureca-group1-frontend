@@ -12,7 +12,8 @@ import {
   TossPaymentsWidgets,
 } from "@tosspayments/tosspayments-sdk";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
+import styles from "./page.module.css";
 
 function generateRandomString() {
   return window.btoa(Math.random().toString()).slice(0, 20);
@@ -23,6 +24,7 @@ const customerKey = generateRandomString();
 
 export default function PointCheckoutPage() {
   const params = useSearchParams();
+  const router = useRouter();
   const chargeAmount = params.get("amount");
 
   const [widgets, setWidgets] = useState<TossPaymentsWidgets | null>(null);
@@ -99,6 +101,14 @@ export default function PointCheckoutPage() {
 
   return (
     <div style={{ padding: "20px" }}>
+      {/* 돌아가기 버튼 */}
+      <button
+        className={styles.headerBackButton}
+        onClick={() => router.push("/points/charge")}
+      >
+        ← 돌아가기
+      </button>
+
       <div
         style={{
           background: "#fff",
@@ -147,18 +157,11 @@ export default function PointCheckoutPage() {
       <div id="payment-method" />
       <div id="agreement" />
 
+      {/* 결제 버튼 */}
       <button
-        disabled={!ready}
         onClick={requestPayment}
-        style={{
-          width: "100%",
-          marginTop: "20px",
-          padding: "16px",
-          background: ready ? "#4f46e5" : "#9ca3af",
-          color: "#fff",
-          borderRadius: "8px",
-          fontSize: "16px",
-        }}
+        className={ready ? styles.payButton : styles.payButtonDisabled}
+        disabled={!ready}
       >
         결제하기
       </button>

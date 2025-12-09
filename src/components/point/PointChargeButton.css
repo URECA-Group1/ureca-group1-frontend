@@ -9,17 +9,16 @@
   width: 100%;
   margin-top: 20px;
   padding: 16px;
-  background: linear-gradient(to right, #a94bff, #d13bff);
+  background: #9333ea;
   color: #fff;
   border: none;
   border-radius: 10px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s ease;
+  transition: background 0.35s ease;
 }
 
-/* hover 시 그radient를 조금 더 진하게 */
 .charge-btn:hover {
-  background: linear-gradient(to right, #9538f3, #c026ff);
+  background: #7827c3; /* hover 시 약간 더 진한 보라 */
 }
