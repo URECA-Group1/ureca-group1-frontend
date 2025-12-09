@@ -6,6 +6,7 @@
  */
 
 import { useRouter } from "next/navigation";
+import "./PointChargeButton.css";
 
 export default function PointChargeButton({ amount }: { amount: number | "" }) {
   const router = useRouter();
@@ -21,21 +22,7 @@ export default function PointChargeButton({ amount }: { amount: number | "" }) {
   };
 
   return (
-    <button
-      onClick={onClick}
-      style={{
-        width: "100%",
-        marginTop: "20px",
-        padding: "16px",
-        background: "linear-gradient(to right, #a94bff, #d13bff)",
-        color: "#fff",
-        border: "none",
-        borderRadius: "10px",
-        fontSize: "16px",
-        fontWeight: 600,
-        cursor: "pointer",
-      }}
-    >
+    <button className="charge-btn" onClick={onClick}>
       충전하기
     </button>
   );

@@ -1,0 +1,25 @@
+/**
+ * @file src/components/point/PointChargeButton.css
+ * @author 허영현
+ * @since 2025-12-09
+ * @description 포인트 충전하기 버튼 컴포넌트의 css 파일입니다.
+ */
+
+.charge-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  background: linear-gradient(to right, #a94bff, #d13bff);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+/* hover 시 그radient를 조금 더 진하게 */
+.charge-btn:hover {
+  background: linear-gradient(to right, #9538f3, #c026ff);
+}
