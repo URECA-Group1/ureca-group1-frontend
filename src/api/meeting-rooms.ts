@@ -30,3 +30,13 @@ export async function enterMeetingRoomReservationPage(
 export async function cancelReservation(reservationId: string) {
   await api.delete(`/api/meeting-rooms/reservations/${reservationId}`);
 }
+
+// 예약 완료
+export async function reserveMeetingRoom(
+  reservationId: string,
+  phoneNumber: string
+) {
+  await api.post(`/api/meeting-rooms/reservations/${reservationId}/complete`, {
+    phoneNumber,
+  });
+}

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getAvailableMeetingRooms } from "@/src/api/meeting-rooms";
 import { MeetingRoom as MeetingRoomType } from "@/src/types/meeting-room";
 import { FaArrowLeft } from "react-icons/fa";
-import MeetingRoom from "@/src/components/MeetingRoom";
+import MeetingRoom from "@/src/components/meeting-rooms/MeetingRoom";
 
 /**
  * @file app/meeting-rooms/page.tsx
