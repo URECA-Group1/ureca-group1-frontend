@@ -25,3 +25,8 @@ export async function enterMeetingRoomReservationPage(
   );
   return response.data.data;
 }
+
+// 예약 취소
+export async function cancelReservation(reservationId: string) {
+  await api.delete(`/api/meeting-rooms/reservations/${reservationId}`);
+}
