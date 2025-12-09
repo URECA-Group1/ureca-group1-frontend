@@ -2,30 +2,70 @@
  * @file app/points/charge/page.tsx
  * @author 허영현
  * @since 2025-12-05
- * @description 포인트 충전 페이지입니다.
+ * @description 포인트 충전 + 포인트 사용 내역 페이지입니다.
  */
 
 "use client";
 
 import { useState, useEffect } from "react";
-import { fetchMyPoints } from "@/src/api/point";
+import { fetchMyPoints, fetchPaidOrders } from "@/src/api/point";
+import { PaidOrder } from "@/src/types/point";
 
 import PointChargeHeader from "@/src/components/point/PointChargeHeader";
 import PointBalanceCard from "@/src/components/point/PointBalanceCard";
 import PointAmountInput from "@/src/components/point/PointAmountInput";
 import PointAmountPresetButtons from "@/src/components/point/PointAmountPresetButtons";
 import PointChargeButton from "@/src/components/point/PointChargeButton";
+import PointHistoryList from "@/src/components/point/PointHistoryList";
 
 export default function ChargePage() {
   const [points, setPoints] = useState<number>(0);
   const [amount, setAmount] = useState<number | "">("");
+  const [orders, setOrders] = useState<PaidOrder[]>([]);
+  const [page, setPage] = useState(1);
+
+  const pageSize = 5; // 페이지당 5개
 
   useEffect(() => {
     (async () => {
       const p = await fetchMyPoints();
       setPoints(p);
+
+      const o = await fetchPaidOrders();
+
+      // 최신순으로 정렬
+      const sorted = [...o].sort(
+        (a, b) =>
+          new Date(b.orderTime).getTime() - new Date(a.orderTime).getTime()
+      );
+
+      // 잔액 계산 로직
+      let balance = p;
+
+      const withBalance = sorted.map((order) => {
+        const updated = {
+          ...order,
+          remainingPoints: balance,
+        };
+
+        // 다음 계산 위해 되돌리기
+        balance += order.totalPrice;
+
+        return updated;
+      });
+
+      setOrders(withBalance);
     })();
   }, []);
+
+  // totalPages가 최소 1이 되게 설정
+  const totalPages =
+    orders.length === 0 ? 1 : Math.ceil(orders.length / pageSize);
+
+  const paginated =
+    orders.length === 0
+      ? []
+      : orders.slice((page - 1) * pageSize, page * pageSize);
 
   return (
     <div style={{ padding: "20px" }}>
@@ -33,6 +73,7 @@ export default function ChargePage() {
 
       <PointBalanceCard points={points} />
 
+      {/* 충전 박스 */}
       <div
         style={{
           background: "#fff",
@@ -52,6 +93,14 @@ export default function ChargePage() {
 
         <PointChargeButton amount={amount} />
       </div>
+
+      {/* 포인트 내역 */}
+      <PointHistoryList
+        orders={paginated}
+        page={page}
+        setPage={setPage}
+        totalPages={totalPages}
+      />
     </div>
   );
 }

@@ -1,0 +1,111 @@
+/**
+ * @file src/components/point/PointHistory.module.css
+ * @author 허영현
+ * @since 2025-12-09
+ * @description 포인트 사용 내역 리스트 + 페이징 컴포넌트의 css 파일입니다.
+ */
+
+.container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 16px;
+  margin-top: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.listBox {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px 0;
+  color: #777;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f9fafb;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+}
+
+.snack {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.date {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #777;
+}
+
+.price {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ef4444;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 12px;
+}
+
+.pageButton {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #9333ea;
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  transition: background 0.25s ease;
+}
+
+.pageButton:hover {
+  background: #7827c3;
+}
+
+.pageButton:disabled {
+  background: #c4b5fd;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 14px;
+  color: #555;
+}
+
+/* 우측 영역 (금액 + 잔액 표시 묶음) */
+.right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* 잔액 표시 */
+.balance {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #4b5563; /* 약한 회색 */
+}

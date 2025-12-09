@@ -1,0 +1,24 @@
+/**
+ * @file src/components/point/PointAmountPresetButtons.css
+ * @author 허영현
+ * @since 2025-12-09
+ * @description 충전할 포인트를 빠른 선택하는 버튼 컴포넌트의 css 파일입니다.
+ */
+
+.preset-btn {
+  flex: 1;
+  padding: 12px 0;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #f8f2ff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+/* hover 시 조금 더 진한 라벤더 색 + 약간의 부드러운 효과 */
+.preset-btn:hover {
+  background: #e9dbff;
+  transform: translateY(-2px);
+}

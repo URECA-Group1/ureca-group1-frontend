@@ -51,6 +51,14 @@ export default function FailPage() {
           background: "#7c3aed",
           color: "#fff",
           borderRadius: "8px",
+          cursor: "pointer",
+          transition: "background 0.25s ease", // 부드러운 색 전환
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.background = "#6d28d9"; // hover: 조금 더 진하게
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.background = "#7c3aed"; // 원래 색으로 복귀
         }}
       >
         포인트 충전 페이지로 이동
