@@ -8,18 +8,50 @@
 
 import { payOrder, cancelPay } from "../../../../src/api/order";
 import { useRouter, useParams } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function PayPage() {
   const router = useRouter();
   const { orderId } = useParams();
   const [loading, setLoading] = useState(false);
 
+  // 뒤로가기(popstate) 또는 페이지 이동 → 자동 취소 처리
+  useEffect(() => {
+    const id = Number(orderId);
+    if (!id || isNaN(id)) return;
+
+    const autoCancel = async () => {
+      try {
+        await cancelPay(id);
+      } catch (_) {
+        // 무시 (사용자에게 알림 띄우지 않음)
+      }
+    };
+
+    // 브라우저 뒤로가기 감지
+    const handlePopState = () => {
+      autoCancel();
+    };
+
+    // 페이지 이탈 감지
+    const handleBeforeUnload = () => {
+      autoCancel();
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [orderId]);
+
+  // 결제
   const handlePay = async () => {
     setLoading(true);
     try {
       await payOrder(Number(orderId));
-
       alert("결제가 완료되었습니다.");
       router.push("/snacks");
     } catch (err: any) {
@@ -29,11 +61,11 @@ export default function PayPage() {
     }
   };
 
+  // 결제 취소
   const handleCancel = async () => {
     setLoading(true);
     try {
       await cancelPay(Number(orderId));
-
       alert("결제가 취소되었습니다.");
       router.push("/snacks");
     } catch {
