@@ -31,7 +31,7 @@ export default function SnacksPage() {
         ← 돌아가기
       </button>
 
-      <h1 style={{ fontSize: "28px", fontWeight: 700 }}>간식 목록</h1>
+      <h1 style={{ fontSize: "28px", fontWeight: 700 }}>간식 주문</h1>
 
       <p style={{ color: "#777", marginTop: "4px" }}>
         다양한 간식과 음료를 주문하세요
