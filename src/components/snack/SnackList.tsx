@@ -41,13 +41,19 @@ export default function SnackList() {
       const result = await requestOrder(snackId); // "SUCCESS" or "FAIL"
 
       if (result === "SUCCESS") {
-        // 주문이 성공적으로 수행되었으니 가장 최근 주문의 orderId 가져오기
         const orders = await fetchOrderHistory();
-        const latest = orders[0]; // 가장 최신 주문이라고 가정
+
+        if (!orders || orders.length === 0) {
+          alert("주문 내역을 찾을 수 없습니다.");
+          return;
+        }
+
+        // 최신 주문은 배열의 마지막 요소
+        const latest = orders[orders.length - 1];
 
         router.push(`/orders/${latest.orderId}/pay`);
       } else {
-        alert("이미 품절되어 주문에 실패했습니다.\n선착순 마감되었습니다.");
+        alert("선착순 마감되었습니다.");
       }
     } catch (err) {
       alert("주문 요청 중 오류가 발생했습니다.");
@@ -60,7 +66,7 @@ export default function SnackList() {
   return (
     <div className={styles.gridContainer}>
       {snacks.map((snack) => (
-        <div key={snack.id} className={styles.card}>
+        <div key={snack.snackId} className={styles.card}>
           {/* 이미지 영역 */}
           <div className={styles.imagePlaceholder}>이미지 없음</div>
 
@@ -81,7 +87,7 @@ export default function SnackList() {
           {/* 버튼 영역 */}
           <button
             className={styles.orderButton}
-            onClick={() => handleOrder(snack.id)}
+            onClick={() => handleOrder(snack.snackId)}
           >
             주문하기
           </button>
