@@ -9,13 +9,17 @@
 
 import { useEffect, useState } from "react";
 import { fetchSnackList } from "../../api/snack";
+import { requestOrder, fetchOrderHistory } from "../../api/order";
 import { Snack } from "../../types/snack";
+import { useRouter } from "next/navigation";
 import styles from "./SnackList.module.css";
 
 export default function SnackList() {
   const [snacks, setSnacks] = useState<Snack[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const router = useRouter();
 
   useEffect(() => {
     const load = async () => {
@@ -30,6 +34,25 @@ export default function SnackList() {
     };
     load();
   }, []);
+
+  // 주문하기 눌렀을 때 실행되는 함수
+  const handleOrder = async (snackId: number) => {
+    try {
+      const result = await requestOrder(snackId); // "SUCCESS" or "FAIL"
+
+      if (result === "SUCCESS") {
+        // 주문이 성공적으로 수행되었으니 가장 최근 주문의 orderId 가져오기
+        const orders = await fetchOrderHistory();
+        const latest = orders[0]; // 가장 최신 주문이라고 가정
+
+        router.push(`/orders/${latest.orderId}/pay`);
+      } else {
+        alert("이미 품절되어 주문에 실패했습니다.\n선착순 마감되었습니다.");
+      }
+    } catch (err) {
+      alert("주문 요청 중 오류가 발생했습니다.");
+    }
+  };
 
   if (loading) return <p>⏳ 불러오는 중...</p>;
   if (error) return <p>❌ 에러: {error}</p>;
@@ -54,10 +77,11 @@ export default function SnackList() {
               </span>
             </div>
           </div>
+
           {/* 버튼 영역 */}
           <button
             className={styles.orderButton}
-            onClick={() => alert(`${snack.snackName} 주문!`)}
+            onClick={() => handleOrder(snack.id)}
           >
             주문하기
           </button>
