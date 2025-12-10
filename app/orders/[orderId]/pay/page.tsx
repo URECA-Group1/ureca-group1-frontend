@@ -15,37 +15,30 @@ export default function PayPage() {
   const { orderId } = useParams();
   const [loading, setLoading] = useState(false);
 
-  // 뒤로가기(popstate) 또는 페이지 이동 → 자동 취소 처리
+  // 뒤로가기(popstate) → 자동 취소 처리
   useEffect(() => {
     const id = Number(orderId);
-    if (!id || isNaN(id)) return;
+    if (!id) return;
 
-    const autoCancel = async () => {
-      try {
-        await cancelPay(id);
-      } catch (_) {
-        // 무시 (사용자에게 알림 띄우지 않음)
-      }
+    const handleBack = () => {
+      // 결제 취소 실행
+      cancelPay(id).finally(() => {
+        // 이전 페이지로 이동 (Next.js router 사용)
+        router.back();
+      });
     };
 
-    // 브라우저 뒤로가기 감지
-    const handlePopState = () => {
-      autoCancel();
-    };
+    // 히스토리가 이미 조작되지 않았다면 pushState 1회
+    if (!window.history.state || !window.history.state.customPayState) {
+      window.history.pushState({ customPayState: true }, "", "");
+    }
 
-    // 페이지 이탈 감지
-    const handleBeforeUnload = () => {
-      autoCancel();
-    };
-
-    window.addEventListener("popstate", handlePopState);
-    window.addEventListener("beforeunload", handleBeforeUnload);
+    window.addEventListener("popstate", handleBack);
 
     return () => {
-      window.removeEventListener("popstate", handlePopState);
-      window.removeEventListener("beforeunload", handleBeforeUnload);
+      window.removeEventListener("popstate", handleBack);
     };
-  }, [orderId]);
+  }, [orderId, router]);
 
   // 결제
   const handlePay = async () => {
