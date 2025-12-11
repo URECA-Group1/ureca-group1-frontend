@@ -47,7 +47,7 @@ export default function SnackList() {
       }
 
       // Kafka Consumer가 DB 저장할 시간 잠깐 기다리기
-      await new Promise((res) => setTimeout(res, 300));
+      await new Promise((res) => setTimeout(res, 500));
 
       // 2) 진짜 주문이 저장되었는지 & 재고 확보 성공인지 확인
       const orders = await fetchOrderHistory();
