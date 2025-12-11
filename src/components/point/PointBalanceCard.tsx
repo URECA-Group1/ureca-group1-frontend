@@ -12,7 +12,7 @@ export default function PointBalanceCard({ points }: { points: number }) {
         background: "linear-gradient(to right, #a94bff, #ff6bcb)",
         borderRadius: "16px",
         color: "#fff",
-        padding: "24px",
+        padding: "28px 32px",
         marginBottom: "30px",
       }}
     >

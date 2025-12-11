@@ -1,0 +1,154 @@
+.backBtn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 12px;
+}
+
+.container {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Point card */
+.pointCard {
+  background: linear-gradient(90deg, #ff9f1c, #f97416);
+  color: white;
+  padding: 28px 32px;
+  border-radius: 16px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.pointLabel {
+  font-size: 16px;
+}
+
+.pointValue {
+  font-size: 32px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.remainingRow {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.remainingLabel {
+  font-size: 16px;
+}
+
+.remainingValue {
+  font-size: 26px;
+  font-weight: 700;
+}
+
+/* Order card */
+.orderCard {
+  background: white;
+  padding: 28px;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24px;
+}
+
+.orderTitle {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+.orderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.snackName {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.snackPrice {
+  color: #ff9f1c;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.guideText {
+  font-size: 14px;
+  color: #777;
+  margin-top: -12px;
+}
+
+/* Buttons */
+.buttonRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 16px 0;
+  background: #e5e7eb;
+  border-radius: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.cancelBtn:hover {
+  background: #d1d5db;
+}
+
+.payBtn {
+  flex: 1;
+  padding: 16px 0;
+  background: #ff9f1c;
+  color: white;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.payBtn:hover {
+  background: #da8607;
+}
+
+.pageTitle {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 0;
+}
+
+.pageDesc {
+  font-size: 16px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* 뒤로가기 버튼을 제목 위에 깔끔하게 정렬 */
+.backBtn {
+  background: none;
+  border: none;
+  color: #666;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  align-self: flex-start;
+}
