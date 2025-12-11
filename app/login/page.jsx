@@ -3,6 +3,7 @@
 import { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function LoginPage() {
   /* 프론트엔드에서 인가 코드 발급 받을 떄 사용함
@@ -80,7 +81,13 @@ export default function LoginPage() {
             onClick={googleServerLogin}
             className="cursor-pointer overflow-hidden w-[350px] transition duration-300 ease-in-out hover:brightness-90"
           >
-            <img src="/google_login.png" />
+            <Image
+              src="/google_login.png"
+              alt="구글 로그인 버튼"
+              width={350}
+              height={60}
+              className="object-contain"
+            />
           </div>
 
           {/* Kakao Login */}
@@ -88,7 +95,13 @@ export default function LoginPage() {
             onClick={kakaoServerLogin}
             className="cursor-pointer overflow-hidden w-[350px] transition duration-300 ease-in-out hover:brightness-90"
           >
-            <img src="/kakao_login.png" />
+            <Image
+              src="/kakao_login.png"
+              alt="카카오 로그인 버튼"
+              width={350}
+              height={60}
+              className="object-contain"
+            />
           </div>
         </div>
       </div>
