@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 export default function LoginPage() {
   /* 프론트엔드에서 인가 코드 발급 받을 떄 사용함
@@ -61,23 +62,43 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex justify-center mt-20">
-      <div className="w-full max-w-md bg-white shadow p-6 rounded-lg">
-        <h2 className="text-center text-2xl font-bold mb-4">로그인</h2>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-50 px-4">
+      {/* 제목 */}
+      <h1 className="text-3xl font-bold text-zinc-900">URECA StudyCafe</h1>
+      <p className="text-zinc-500 mt-6 mb-10">
+        소셜 계정으로 간편하게 로그인하세요
+      </p>
 
-        <div className="flex mt-6 justify-between">
-          <img
-            src="/google_login.png"
-            className="h-10 cursor-pointer"
+      {/* 로그인 카드 */}
+      <div className="w-full max-w-md bg-white shadow-lg rounded-2xl py-10 px-8 mb-4">
+        <h2 className="text-center text-2xl font-semibold mb-6">로그인</h2>
+
+        {/* 로그인 버튼 구역 */}
+        <div className="flex flex-col gap-4 items-center">
+          {/* Google Login */}
+          <div
             onClick={googleServerLogin}
-          />
-          <img
-            src="/kakao_login.png"
-            className="h-10 cursor-pointer"
+            className="cursor-pointer overflow-hidden w-[350px] transition duration-300 ease-in-out hover:brightness-90"
+          >
+            <img src="/google_login.png" />
+          </div>
+
+          {/* Kakao Login */}
+          <div
             onClick={kakaoServerLogin}
-          />
+            className="cursor-pointer overflow-hidden w-[350px] transition duration-300 ease-in-out hover:brightness-90"
+          >
+            <img src="/kakao_login.png" />
+          </div>
         </div>
       </div>
+
+      <Link
+        href="/"
+        className="text-base text-zinc-500 hover:text-zinc-700 transition mt-2"
+      >
+        ← 메인으로 돌아가기
+      </Link>
     </div>
   );
 }
