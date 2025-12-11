@@ -33,7 +33,7 @@ export default function UserPoint() {
     <div
       style={{
         width: "100%",
-        background: "linear-gradient(90deg, #f7b733, #fc4a1a)",
+        background: "linear-gradient(90deg, #ff9f1c, #F97416)",
         padding: "28px 32px",
         borderRadius: "16px",
         color: "#fff",

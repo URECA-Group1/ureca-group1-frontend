@@ -6,14 +6,38 @@
  */
 "use client";
 
-import { payOrder, cancelPay } from "../../../../src/api/order";
+import {
+  fetchOrderHistory,
+  payOrder,
+  cancelPay,
+} from "../../../../src/api/order";
+import type { OrderResponse } from "../../../../src/types/order";
+import { fetchMyPoints } from "../../../../src/api/point";
 import { useRouter, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
+import styles from "./page.module.css";
 
 export default function PayPage() {
   const router = useRouter();
   const { orderId } = useParams();
   const [loading, setLoading] = useState(false);
+  const [order, setOrder] = useState<OrderResponse | null>(null);
+  const [points, setPoints] = useState(0);
+  const [remaining, setRemaining] = useState(0);
+
+  useEffect(() => {
+    const load = async () => {
+      const myPoints = await fetchMyPoints();
+      setPoints(myPoints);
+
+      const list = await fetchOrderHistory();
+      const found = list.find((o) => o.orderId === Number(orderId));
+      setOrder(found);
+
+      if (found) setRemaining(myPoints - found.totalPrice);
+    };
+    load();
+  }, [orderId]);
 
   // 뒤로가기(popstate) → 자동 취소 처리
   useEffect(() => {
@@ -39,6 +63,9 @@ export default function PayPage() {
       window.removeEventListener("popstate", handleBack);
     };
   }, [orderId, router]);
+
+  if (!order)
+    return <div className={styles.container}>주문 정보를 불러오는 중...</div>;
 
   // 결제
   const handlePay = async () => {
@@ -69,20 +96,66 @@ export default function PayPage() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>결제 페이지</h1>
+    <main>
+      <div className={styles.container}>
+        <button className={styles.backBtn} onClick={handleCancel}>
+          ← 돌아가기
+        </button>
 
-      <button onClick={handlePay} disabled={loading}>
-        결제하기
-      </button>
+        <h1 className={styles.pageTitle}>결제하기</h1>
+        <p className={styles.pageDesc}>
+          주문 내역을 확인하고 결제를 진행하세요
+        </p>
 
-      <button
-        onClick={handleCancel}
-        disabled={loading}
-        style={{ marginLeft: "10px" }}
-      >
-        결제 취소
-      </button>
-    </div>
+        {/* Point card */}
+        <div className={styles.pointCard}>
+          <div className={styles.pointLabel}>현재 보유 포인트</div>
+          <div className={styles.pointValue}>{points.toLocaleString()} P</div>
+
+          <div className={styles.remainingRow}>
+            <div className={styles.remainingLabel}>결제 후 잔여 포인트</div>
+            <div
+              className={styles.remainingValue}
+              style={{ color: remaining < 0 ? "#e80f0fff" : "white" }}
+            >
+              {remaining.toLocaleString()} P
+            </div>
+          </div>
+        </div>
+
+        {/* Order card */}
+        <div className={styles.orderCard}>
+          <div className={styles.orderTitle}>주문 내역</div>
+
+          <div className={styles.orderRow}>
+            <div>
+              <div className={styles.snackName}>{order.snackName}</div>
+            </div>
+
+            <div className={styles.snackPrice}>
+              {order.totalPrice.toLocaleString()} P
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.buttonRow}>
+          <button
+            className={styles.cancelBtn}
+            onClick={handleCancel}
+            disabled={loading}
+          >
+            취소
+          </button>
+
+          <button
+            className={styles.payBtn}
+            onClick={handlePay}
+            disabled={loading}
+          >
+            결제하기
+          </button>
+        </div>
+      </div>
+    </main>
   );
 }

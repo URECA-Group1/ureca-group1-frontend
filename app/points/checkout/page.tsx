@@ -93,6 +93,11 @@ export default function PointCheckoutPage() {
         return;
       }
 
+      // 사용자가 결제 취소한 경우에는 아무 처리도 하지 않음
+      if (error.code === "USER_CANCEL" || error.message?.includes("취소")) {
+        return;
+      }
+
       // 그 외 예외 처리
       console.error("결제 요청 중 오류:", error);
       alert("결제 요청 중 오류가 발생했습니다.");
