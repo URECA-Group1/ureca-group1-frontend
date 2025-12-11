@@ -40,7 +40,7 @@ export default function HeaderComponent() {
         <div className="flex gap-4">
           {!isLogin && (
             <button
-              className="px-4 py-2 bg-zinc-800 text-white rounded-md cursor-pointer"
+              className="w-[100px] py-2 bg-zinc-800 text-white rounded-lg cursor-pointer text-center"
               onClick={() => router.push("/login")}
             >
               로그인
@@ -48,7 +48,7 @@ export default function HeaderComponent() {
           )}
           {isLogin && (
             <button
-              className="px-4 py-2 bg-red-500 text-white rounded-md cursor-pointer"
+              className="w-[100px] py-2 bg-zinc-800 text-white rounded-lg cursor-pointer text-center"
               onClick={doLogout}
             >
               로그아웃
