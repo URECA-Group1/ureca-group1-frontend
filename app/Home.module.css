@@ -1,0 +1,78 @@
+/**
+ * @file app/Home.module.css
+ * @author 허영현
+ * @since 2025-12-11
+ * @description 메인 페이지의 css 파일입니다.
+ */
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  height: 230px;
+}
+
+.card:hover {
+  transform: translateY(-6px); /* 🔥 살짝 위로 올라가는 효과 */
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12); /* 🔥 그림자 진하게 */
+}
+
+.cardTitle {
+  font-size: 20px;
+  font-weight: 700;
+  color: #111;
+  margin-top: 12px;
+}
+
+.actionRow {
+  margin-top: auto;
+  font-size: 15px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.tealText {
+  color: #159e9c;
+}
+
+.greenText {
+  color: #0b9a71;
+}
+
+.orangeText {
+  color: #da7908;
+}
+
+.arrow {
+  font-size: 16px;
+}
+
+.iconBox {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBgTeal {
+  background-color: #ccfbf1; /* 회의실 - 연한 청록색 */
+}
+
+.iconBgGreen {
+  background-color: #d1fae5; /* 좌석 - 연한 그린 */
+}
+
+.iconBgOrange {
+  background-color: #ffe8c8; /* 간식 - 연한 오렌지 */
+}

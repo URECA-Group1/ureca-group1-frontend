@@ -22,18 +22,39 @@ export default function HeaderComponent() {
   const doLogout = () => {
     localStorage.removeItem("token");
     setIsLogin(false); // 상태 업데이트 → UI 자동 갱신
-    router.refresh();   // App Router에서는 새로고침 대신 refresh
+    router.refresh(); // App Router에서는 새로고침 대신 refresh
   };
 
   return (
-    <header style={{ padding: "10px 20px", backgroundColor: "#1976d2", color: "#fff" }}>
-      <div style={{ display: "flex", justifyContent: "flex-end", gap: "10px" }}>
-        {!isLogin && (
-          <>
-            <button onClick={() => router.push("/login")}>로그인</button>
-          </>
-        )}
-        {isLogin && <button onClick={doLogout}>로그아웃</button>}
+    <header className="w-full bg-white shadow-sm">
+      <div className="max-w-6xl mx-auto px-6 flex justify-between items-center h-16">
+        {/* LEFT LOGO */}
+        <h1
+          className="text-xl font-bold cursor-pointer text-zinc-800"
+          onClick={() => router.push("/")}
+        >
+          URECA StudyCafe
+        </h1>
+
+        {/* RIGHT BUTTONS */}
+        <div className="flex gap-4">
+          {!isLogin && (
+            <button
+              className="px-4 py-2 bg-zinc-800 text-white rounded-md cursor-pointer"
+              onClick={() => router.push("/login")}
+            >
+              로그인
+            </button>
+          )}
+          {isLogin && (
+            <button
+              className="px-4 py-2 bg-red-500 text-white rounded-md cursor-pointer"
+              onClick={doLogout}
+            >
+              로그아웃
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );
