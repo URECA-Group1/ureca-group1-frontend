@@ -53,19 +53,19 @@ export default function PointCheckoutPage() {
       const amountValue = Number(chargeAmount);
 
       // 위젯 결제 금액 설정
-      await widgets.setAmount({
+      await widgets!.setAmount({
         value: amountValue,
         currency: "KRW",
       });
 
       // 결제 UI 렌더링
-      await widgets.renderPaymentMethods({
+      await widgets!.renderPaymentMethods({
         selector: "#payment-method",
         variantKey: "DEFAULT",
       });
 
       // 이용약관 UI 렌더링
-      await widgets.renderAgreement({
+      await widgets!.renderAgreement({
         selector: "#agreement",
         variantKey: "AGREEMENT",
       });
