@@ -7,9 +7,10 @@
 
 "use client";
 
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function FailPage() {
+function FailContent() {
   const params = useSearchParams();
 
   const message = params.get("message");
@@ -52,17 +53,25 @@ export default function FailPage() {
           color: "#fff",
           borderRadius: "8px",
           cursor: "pointer",
-          transition: "background 0.25s ease", // 부드러운 색 전환
+          transition: "background 0.25s ease",
         }}
         onMouseEnter={(e) => {
-          e.currentTarget.style.background = "#6d28d9"; // hover: 조금 더 진하게
+          e.currentTarget.style.background = "#6d28d9";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = "#7c3aed"; // 원래 색으로 복귀
+          e.currentTarget.style.background = "#7c3aed";
         }}
       >
         포인트 충전 페이지로 이동
       </button>
     </div>
+  );
+}
+
+export default function FailPage() {
+  return (
+    <Suspense fallback={<div>로딩 중...</div>}>
+      <FailContent />
+    </Suspense>
   );
 }
