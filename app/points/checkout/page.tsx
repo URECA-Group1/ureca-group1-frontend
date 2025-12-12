@@ -6,21 +6,31 @@
  */
 
 "use client";
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
+export const runtime = "edge"; // optional이지만 안정적
 
 import {
   loadTossPayments,
   TossPaymentsWidgets,
 } from "@tosspayments/tosspayments-sdk";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
 
-function generateRandomString() {
-  return window.btoa(Math.random().toString()).slice(0, 20);
+// function generateRandomString() {
+//   return window.btoa(Math.random().toString()).slice(0, 20);
+// }
+
+// 랜덤 문자열 생성 함수
+function generateCustomerKey() {
+  return typeof window !== "undefined"
+    ? window.btoa(Math.random().toString()).slice(0, 20)
+    : "";
 }
 
 const clientKey = "test_gck_docs_Ovk5rk1EwkEbP0W43n07xlzm";
-const customerKey = generateRandomString();
+// const customerKey = generateRandomString();
 
 export default function PointCheckoutPage() {
   const params = useSearchParams();
@@ -30,7 +40,12 @@ export default function PointCheckoutPage() {
   const [widgets, setWidgets] = useState<TossPaymentsWidgets | null>(null);
   const [ready, setReady] = useState(false);
 
+  // ❗ customerKey는 CSR에서만 생성되도록 useMemo 사용
+  const customerKey = useMemo(() => generateCustomerKey(), []);
+
   useEffect(() => {
+    if (!customerKey) return;
+
     async function initWidgets() {
       const tossPayments = await loadTossPayments(clientKey);
 
@@ -43,11 +58,10 @@ export default function PointCheckoutPage() {
     }
 
     initWidgets();
-  }, []);
+  }, [customerKey]);
 
   useEffect(() => {
-    if (!widgets) return;
-    if (!chargeAmount) return;
+    if (!widgets || !chargeAmount) return;
 
     async function render() {
       const amountValue = Number(chargeAmount);
