@@ -1,7 +1,7 @@
 import axios, { InternalAxiosRequestConfig } from "axios";
 
 export const api = axios.create({
-  baseURL: "https://urecastudycafe.store", // 백엔드 주소로 변경
+  baseURL: "https://api.urecastudycafe.store", // 백엔드 주소로 변경
   headers: {
     "Content-Type": "application/json",
   },
