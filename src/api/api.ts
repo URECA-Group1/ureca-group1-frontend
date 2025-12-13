@@ -2,11 +2,8 @@ import axios, { InternalAxiosRequestConfig, AxiosResponse, AxiosError } from "ax
 import {getCookie} from 'cookies-next';
 
 export const api = axios.create({
-<<<<<<< HEAD
   baseURL: "https://urecastudycafe.store/", // 백엔드 주소로 변경
-=======
-  baseURL: "https://api.urecastudycafe.store", // 백엔드 주소로 변경
->>>>>>> e0dfdb13806a6d8f5bb0ca65a43002097ccfd9b0
+
   headers: {
     "Content-Type": "application/json",
   },
