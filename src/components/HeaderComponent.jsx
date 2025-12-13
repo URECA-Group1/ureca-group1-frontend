@@ -33,7 +33,6 @@ export default function HeaderComponent() {
       setIsLogin(false); // 상태 업데이트 → UI 자동 갱신
       router.refresh(); // App Router에서는 새로고침 대신 refresh
     }
-    
   };
 
   return (
