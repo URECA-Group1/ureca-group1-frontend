@@ -9,15 +9,6 @@ export default function HeaderComponent() {
   const router = useRouter();
 
   useEffect(() => {
-    // 쿠키에서 access 가져오기
-    const access = Cookies.get("access");
-    const refresh = Cookies.get("refresh");
-
-    if (access) {
-      localStorage.setItem("access", access);
-      Cookies.remove("access");
-    }
-
     // 토큰 존재 여부로 로그인 상태 결정
     setIsLogin(!!localStorage.getItem("access"));
   }, []);
