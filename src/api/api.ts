@@ -3,7 +3,6 @@ import axios, {
   AxiosResponse,
   AxiosError,
 } from "axios";
-import { getCookie } from "cookies-next";
 
 export const api = axios.create({
   baseURL: "https://api.urecastudycafe.store", // 백엔드 주소로 변경
@@ -48,15 +47,6 @@ api.interceptors.response.use(
     if (status === 401 && originalRequest && !originalRequest._retry) {
       originalRequest._retry = true; // 재시도 플래그 설정
       console.log("Access Token 만료 감지. 재발급 시도 중...");
-
-      // 쿠키에 Refresh Token이 있는지 확인 (Next.js 환경 가정)
-      if (!getCookie("refresh")) {
-        console.error("Refresh Token이 쿠키에 없습니다. 재로그인 필요.");
-        localStorage.removeItem("access");
-        // 💡 Next.js Router를 사용할 수 없으므로 window.location 사용
-        window.location.href = "/login";
-        return Promise.reject(error);
-      }
 
       try {
         // 토큰 재발급 요청 (Refresh Token은 자동으로 쿠키로 전송됨)
