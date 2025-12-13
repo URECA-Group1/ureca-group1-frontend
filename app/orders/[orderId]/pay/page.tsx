@@ -32,7 +32,7 @@ export default function PayPage() {
 
       const list = await fetchOrderHistory();
       const found = list.find((o) => o.orderId === Number(orderId));
-      setOrder(found);
+      setOrder(found ?? null);
 
       if (found) setRemaining(myPoints - found.totalPrice);
     };

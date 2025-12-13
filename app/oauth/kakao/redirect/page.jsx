@@ -13,7 +13,10 @@ export default function KakaoRedirectPage() {
 
   const sendCodeToServer = async (code) => {
     try {
-      const response = await axios.post("http://localhost:8080/member/kakao/doLogin", { code });
+      const response = await axios.post(
+        "https://urecastudycafe.store/member/kakao/doLogin",
+        { code }
+      );
       const token = response.data.token;
       localStorage.setItem("token", token);
       router.replace("/"); // 로그인 후 메인 페이지 이동

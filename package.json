@@ -11,6 +11,7 @@
   "dependencies": {
     "@tosspayments/tosspayments-sdk": "^2.5.0",
     "axios": "^1.13.2",
+    "cookies-next": "^6.1.1",
     "js-cookie": "^3.0.5",
     "next": "^16.0.10",
     "react": "^19.2.3",
