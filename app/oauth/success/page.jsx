@@ -23,12 +23,11 @@ export default function OAuthSuccessPage() {
 
     if (accessToken) {
       localStorage.setItem("access", accessToken);
-
-      Cookies.remove("access", { 
-        path: "/",
-        domain: COOKIE_DOMAIN,
-        secure: true
-      }); // 즉시 삭제
+      // Cookies.remove("access", { 
+      //   path: "/",
+      //   domain: COOKIE_DOMAIN,
+      //   secure: true
+      // }); // 즉시 삭제
     }
 
     router.replace("/");
