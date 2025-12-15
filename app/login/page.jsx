@@ -55,13 +55,13 @@ export default function LoginPage() {
   // 백엔드에서 인가 코드 발급 시
   const googleServerLogin = () => {
     window.location.href =
-      "https://api.urecastudycafe.store/oauth2/authorization/google";
+      "http://localhost:8080/oauth2/authorization/google";
   };
 
   // 백엔드에서 인가 코드 발급 시
   const kakaoServerLogin = () => {
     window.location.href =
-      "https://api.urecastudycafe.store/oauth2/authorization/kakao";
+      "http://localhost:8080/oauth2/authorization/kakao";
   };
 
   return (
