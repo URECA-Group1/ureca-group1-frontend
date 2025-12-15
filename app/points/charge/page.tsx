@@ -11,7 +11,6 @@ import { useState, useEffect } from "react";
 import { fetchMyPoints, fetchPaidOrders } from "@/src/api/point";
 import { PaidOrder } from "@/src/types/point";
 
-import PointChargeHeader from "@/src/components/point/PointChargeHeader";
 import PointBalanceCard from "@/src/components/point/PointBalanceCard";
 import PointAmountInput from "@/src/components/point/PointAmountInput";
 import PointAmountPresetButtons from "@/src/components/point/PointAmountPresetButtons";
