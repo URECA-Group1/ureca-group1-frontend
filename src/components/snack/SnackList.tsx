@@ -13,6 +13,8 @@ import { requestOrder, fetchOrderHistory } from "../../api/order";
 import { Snack } from "../../types/snack";
 import { useRouter } from "next/navigation";
 import styles from "./SnackList.module.css";
+import Image from "next/image";
+import { snackImages } from "@/src/constants/snackImages";
 
 export default function SnackList() {
   const [snacks, setSnacks] = useState<Snack[]>([]);
@@ -82,7 +84,19 @@ export default function SnackList() {
       {snacks.map((snack) => (
         <div key={snack.snackId} className={styles.card}>
           {/* 이미지 영역 */}
-          <div className={styles.imagePlaceholder}>이미지 없음</div>
+          <div className={styles.imagePlaceholder}>
+            {snackImages[snack.snackName] ? (
+              <Image
+                src={snackImages[snack.snackName]}
+                alt={snack.snackName}
+                width={120}
+                height={120}
+                style={{ objectFit: "contain" }}
+              />
+            ) : (
+              <span>이미지 없음</span>
+            )}
+          </div>
 
           {/* 정보 영역 */}
           <div>

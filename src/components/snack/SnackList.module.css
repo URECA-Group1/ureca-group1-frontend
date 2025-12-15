@@ -37,6 +37,7 @@
   justify-content: center;
   color: #aaa;
   font-size: 12px;
+  overflow: hidden; /* 중요 */
 }
 
 /* 텍스트 영역 */
