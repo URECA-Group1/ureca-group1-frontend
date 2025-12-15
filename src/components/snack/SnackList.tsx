@@ -86,7 +86,23 @@ export default function SnackList() {
           {/* 이미지 영역 */}
           <div className={styles.imagePlaceholder}>
             {(() => {
+              console.log(
+                "원본:",
+                `[${snack.snackName}]`,
+                "길이:",
+                snack.snackName.length
+              );
+
               const normalizedName = snack.snackName.trim().normalize("NFC");
+
+              console.log(
+                "정규화:",
+                `[${normalizedName}]`,
+                "길이:",
+                normalizedName.length,
+                "매칭:",
+                snackImages[normalizedName]
+              );
 
               return snackImages[normalizedName] ? (
                 <Image
