@@ -16,6 +16,7 @@ import { fetchMyPoints } from "../../../../src/api/point";
 import { useRouter, useParams } from "next/navigation";
 import { useState, useEffect } from "react";
 import styles from "./page.module.css";
+import { snackImages } from "@/src/constants/snackImages";
 
 export default function PayPage() {
   const router = useRouter();
@@ -128,7 +129,26 @@ export default function PayPage() {
           <div className={styles.orderTitle}>주문 내역</div>
 
           <div className={styles.orderRow}>
-            <div>
+            {/* 이미지 + 이름 */}
+            <div className={styles.snackInfo}>
+              <div className={styles.snackImage}>
+                {(() => {
+                  const normalizedName = order.snackName
+                    .trim()
+                    .normalize("NFC");
+                  return snackImages[normalizedName] ? (
+                    <img
+                      src={snackImages[normalizedName]}
+                      alt={order.snackName}
+                      width={60}
+                      height={60}
+                      style={{ objectFit: "contain" }}
+                    />
+                  ) : (
+                    <span>이미지 없음</span>
+                  );
+                })()}
+              </div>
               <div className={styles.snackName}>{order.snackName}</div>
             </div>
 
