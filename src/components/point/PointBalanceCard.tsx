@@ -13,7 +13,8 @@ export default function PointBalanceCard({ points }: { points: number }) {
         borderRadius: "16px",
         color: "#fff",
         padding: "28px 32px",
-        marginBottom: "30px",
+        marginTop: "24px",
+        marginBottom: "24px",
       }}
     >
       <p style={{ fontSize: "16px", opacity: 0.8 }}>현재 보유 포인트</p>

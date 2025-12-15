@@ -7,39 +7,31 @@
 
 "use client";
 
-import { useRouter } from "next/navigation";
 import UserPoint from "@/src/components/point/UserPoint";
 import SnackList from "@/src/components/snack/SnackList";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function SnacksPage() {
-  const router = useRouter();
-
   return (
-    <main style={{ padding: "20px" }}>
-      {/* 돌아가기 버튼 */}
-      <button
-        onClick={() => router.push("/")}
-        style={{
-          background: "none",
-          border: "none",
-          color: "#666",
-          fontSize: "14px",
-          cursor: "pointer",
-          marginBottom: "12px",
-        }}
+    <div className="mt-10 mx-10">
+      <Link
+        href="/"
+        className="flex items-center text-zinc-500 hover:text-zinc-700 cursor-pointer"
       >
-        ← 돌아가기
-      </button>
+        <FaArrowLeft size="16" />
+        <span className="ml-2">돌아가기</span>
+      </Link>
 
-      <h1 style={{ fontSize: "28px", fontWeight: 700 }}>간식 주문</h1>
+      <h2 className="mt-5 text-3xl font-bold">간식 주문</h2>
 
-      <p style={{ color: "#777", marginTop: "4px" }}>
+      <p className="mt-2 text-zinc-700 text-lg">
         다양한 간식과 음료를 주문하세요
       </p>
 
       <UserPoint />
 
       <SnackList />
-    </main>
+    </div>
   );
 }

@@ -17,6 +17,8 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import styles from "./page.module.css";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 // function generateRandomString() {
 //   return window.btoa(Math.random().toString()).slice(0, 20);
@@ -119,14 +121,15 @@ export default function PointCheckoutPage() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <div className="mt-10 mx-10">
       {/* 돌아가기 버튼 */}
-      <button
-        className={styles.headerBackButton}
-        onClick={() => router.push("/points/charge")}
+      <Link
+        href="/points/charge"
+        className="flex items-center text-zinc-500 hover:text-zinc-700 cursor-pointer"
       >
-        ← 돌아가기
-      </button>
+        <FaArrowLeft size="16" />
+        <span className="ml-2">돌아가기</span>
+      </Link>
 
       <div
         style={{
@@ -135,6 +138,7 @@ export default function PointCheckoutPage() {
           borderRadius: "14px",
           boxShadow: "0 4px 12px rgba(0,0,0,0.06)",
           marginBottom: "24px",
+          marginTop: "20px",
         }}
       >
         <h2
