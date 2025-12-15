@@ -72,7 +72,7 @@ export default function ChargePage() {
   return (
     <div className="mt-10 mx-10">
       <Link
-        href="/"
+        href="/snacks"
         className="flex items-center text-zinc-500 hover:text-zinc-700 cursor-pointer"
       >
         <FaArrowLeft size="16" />
