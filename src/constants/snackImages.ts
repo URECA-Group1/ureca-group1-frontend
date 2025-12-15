@@ -1,3 +1,10 @@
+/**
+ * @file src/constants/snackImages.ts
+ * @author 허영현
+ * @since 2025-12-15
+ * @description 간식 이미지를 매핑하는 객체 파일입니다.
+ */
+
 export const snackImages: Record<string, string> = {
   멘토스: "/snacks/멘토스.png",
   황치즈소금빵: "/snacks/황치즈소금빵.png",

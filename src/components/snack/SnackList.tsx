@@ -85,17 +85,21 @@ export default function SnackList() {
         <div key={snack.snackId} className={styles.card}>
           {/* 이미지 영역 */}
           <div className={styles.imagePlaceholder}>
-            {snackImages[snack.snackName] ? (
-              <Image
-                src={snackImages[snack.snackName]}
-                alt={snack.snackName}
-                width={120}
-                height={120}
-                style={{ objectFit: "contain" }}
-              />
-            ) : (
-              <span>이미지 없음</span>
-            )}
+            {(() => {
+              const normalizedName = snack.snackName.trim().normalize("NFC");
+
+              return snackImages[normalizedName] ? (
+                <Image
+                  src={snackImages[normalizedName]}
+                  alt={snack.snackName}
+                  width={120}
+                  height={120}
+                  style={{ objectFit: "contain" }}
+                />
+              ) : (
+                <span>이미지 없음</span>
+              );
+            })()}
           </div>
 
           {/* 정보 영역 */}
