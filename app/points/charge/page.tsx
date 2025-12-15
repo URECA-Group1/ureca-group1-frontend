@@ -17,6 +17,8 @@ import PointAmountInput from "@/src/components/point/PointAmountInput";
 import PointAmountPresetButtons from "@/src/components/point/PointAmountPresetButtons";
 import PointChargeButton from "@/src/components/point/PointChargeButton";
 import PointHistoryList from "@/src/components/point/PointHistoryList";
+import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa";
 
 export default function ChargePage() {
   const [points, setPoints] = useState<number>(0);
@@ -68,8 +70,20 @@ export default function ChargePage() {
       : orders.slice((page - 1) * pageSize, page * pageSize);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <PointChargeHeader />
+    <div className="mt-10 mx-10">
+      <Link
+        href="/"
+        className="flex items-center text-zinc-500 hover:text-zinc-700 cursor-pointer"
+      >
+        <FaArrowLeft size="16" />
+        <span className="ml-2">돌아가기</span>
+      </Link>
+
+      <h2 className="mt-5 text-3xl font-bold">포인트 충전</h2>
+
+      <p className="mt-2 text-zinc-700 text-lg">
+        포인트를 충전하고 사용 내역을 확인하세요
+      </p>
 
       <PointBalanceCard points={points} />
 
@@ -102,5 +116,39 @@ export default function ChargePage() {
         totalPages={totalPages}
       />
     </div>
+    // <div>
+    //   <PointChargeHeader />
+
+    //   <PointBalanceCard points={points} />
+
+    //   {/* 충전 박스 */}
+    //   <div
+    //     style={{
+    //       background: "#fff",
+    //       borderRadius: "16px",
+    //       padding: "24px",
+    //       marginTop: "20px",
+    //       boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
+    //     }}
+    //   >
+    //     <h2 style={{ fontSize: "20px", fontWeight: 700, marginBottom: "16px" }}>
+    //       포인트 충전하기
+    //     </h2>
+
+    //     <PointAmountInput amount={amount} setAmount={setAmount} />
+
+    //     <PointAmountPresetButtons setAmount={setAmount} />
+
+    //     <PointChargeButton amount={amount} />
+    //   </div>
+
+    //   {/* 포인트 내역 */}
+    //   <PointHistoryList
+    //     orders={paginated}
+    //     page={page}
+    //     setPage={setPage}
+    //     totalPages={totalPages}
+    //   />
+    // </div>
   );
 }
