@@ -7,7 +7,7 @@
 
 "use client";
 
-// import UserPoint from "@/src/components/point/UserPoint";
+import UserPoint from "@/src/components/point/UserPoint";
 import SnackList from "@/src/components/snack/SnackList";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
@@ -29,7 +29,7 @@ export default function SnacksPage() {
         다양한 간식과 음료를 주문하세요
       </p>
 
-      {/* <UserPoint /> */}
+      <UserPoint />
 
       <SnackList />
     </div>

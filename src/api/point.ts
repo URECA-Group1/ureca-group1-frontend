@@ -10,10 +10,10 @@ import { PaidOrder } from "../types/point";
  */
 
 // 보유 포인트 조회
-// export async function fetchMyPoints(): Promise<number> {
-//   const response = await api.get<{ data: PointResponse }>("/api/points");
-//   return response.data.data.points; // 숫자만 반환
-// }
+export async function fetchMyPoints(): Promise<number> {
+  const response = await api.get<{ data: PointResponse }>("/api/points");
+  return response.data.data.points; // 숫자만 반환
+}
 
 // 포인트 사용 내역 조회
 export async function fetchPaidOrders(): Promise<PaidOrder[]> {
