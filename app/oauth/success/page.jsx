@@ -23,7 +23,6 @@ export default function OAuthSuccessPage() {
 
     if (accessToken) {
       localStorage.setItem("access", accessToken);
-
       // Cookies.remove("access", { 
       //   path: "/",
       //   domain: COOKIE_DOMAIN,

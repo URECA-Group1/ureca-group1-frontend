@@ -22,7 +22,11 @@ export default function HeaderComponent() {
       console.error("로그아웃 중 서버 에러 발생", error);
     } finally {
       localStorage.removeItem("access");
-      
+      // Cookies.remove("refresh", {
+      //   path: "/",
+      //   domain: COOKIE_DOMAIN,
+      //   secure: true,
+      // });
       setIsLogin(false); // 상태 업데이트 → UI 자동 갱신
       router.refresh(); // App Router에서는 새로고침 대신 refresh
     }
