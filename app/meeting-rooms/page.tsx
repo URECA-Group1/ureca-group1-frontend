@@ -44,7 +44,7 @@ export default function MeetingRoomsPage() {
         <h2 className="mt-5 text-3xl font-bold">회의실 예약</h2>
         <div className="flex justify-between">
           <p className="mt-2 text-zinc-700 text-lg">
-            원하는 회의실을 선택하세요.
+            원하는 회의실을 선택하세요
           </p>
           <MyMeetingRooms updateMeetingRoomsList={loadMeetingRooms} />
         </div>

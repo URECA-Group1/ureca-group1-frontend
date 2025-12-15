@@ -21,7 +21,7 @@ export default function SeatHeader() {
       </button>
       <h2 className="mt-5 text-3xl font-bold">좌석 예약</h2>
       <p className="mt-2 text-zinc-700 text-lg">
-        원하시는 좌석을 선택하고 예약하세요.
+        원하시는 좌석을 선택하고 예약하세요
       </p>
     </div>
   );
