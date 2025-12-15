@@ -19,6 +19,7 @@ export default function SnackList() {
   const [snacks, setSnacks] = useState<Snack[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [ordering, setOrdering] = useState(false);
 
   const router = useRouter();
 
@@ -38,6 +39,10 @@ export default function SnackList() {
 
   // 주문하기 눌렀을 때 실행되는 함수
   const handleOrder = async (snackId: number) => {
+    if (ordering) return; // 이미 주문 중이면 무시
+
+    setOrdering(true); // 주문 시작
+
     try {
       // 1) 일단 Kafka 요청 성공했는지만 확인 (이건 재고 보장 X)
       const result = await requestOrder(snackId);
@@ -72,6 +77,8 @@ export default function SnackList() {
       }
     } catch (err) {
       alert("주문 요청 중 오류가 발생했습니다.");
+    } finally {
+      setOrdering(false); // 무조건 해제
     }
   };
 
@@ -119,8 +126,9 @@ export default function SnackList() {
           <button
             className={styles.orderButton}
             onClick={() => handleOrder(snack.snackId)}
+            disabled={ordering} // ✅ 추가
           >
-            주문하기
+            {ordering ? "주문 처리 중..." : "주문하기"}
           </button>
         </div>
       ))}
