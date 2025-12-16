@@ -29,7 +29,7 @@ export default function SeatingChart() {
   }, []);
 
   return (
-    <div className="mt-5 flex flex-wrap">
+    <div className="mt-5 grid grid-cols-7 gap-1">
       {seats?.map((seat) => (
         <Seat
           key={seat.id}
